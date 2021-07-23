@@ -18,7 +18,9 @@ int height_count(const binary_tree_t *tree)
 	right_subtree += height_count(tree->right) + 1;
 
 	if (left_subtree > right_subtree)
+	{
 		return (left_subtree);
+	}
 	return (right_subtree);
 }
 
