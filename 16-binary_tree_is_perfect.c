@@ -54,10 +54,17 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	int left_subtree;
 	int right_subtree;
 
-	if (!tree)
+	if (tree == NULL)
 		return (0);
-
-	left_subtree = height_count(tree->left);
-	right_subtree = height_count(tree->right);
-	return (left_subtree == right_subtree);
+	if (tree->left == NULL && tree->right == NULL)
+		return (1);
+	if (binary_tree_balance(tree) != 0)
+		return (0);
+	if (tree->left && tree->right)
+	{
+		left_subtree = binary_tree_is_perfect(tree->left);
+		right_subtree = binary_tree_is_perfect(tree->right);
+		return (left_subtree && right_subtree);
+	}
+	return (0);
 }
